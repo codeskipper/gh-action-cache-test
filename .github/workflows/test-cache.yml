@@ -68,7 +68,7 @@ jobs:
       - name: process test file
         run: |
           result=''
-          if [[ ! -x "~/${{ env.cache-name }}/${{ env.testfile }}" ]]; then
+          if [[ -x "~/${{ env.cache-name }}/${{ env.testfile }}" ]]; then
             result=$( xattr -p ${{ env.test-attr-key }} ${{ env.cache-name }}/${{ env.testfile }} )
             echo "Found testfile: [${{ env.testfile }}] test-attribute: [${{ env.test-attr-key }}] value: [$result]"
           fi
