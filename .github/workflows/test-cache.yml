@@ -8,7 +8,7 @@ on:
       #  default: 'https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=osx&lang=en-GB'
       #  required: true
       uninstall_gtar:
-        description: whether to uninstall gtar before doing a fresh download and populating the cache
+        description: uninstall gtar - whether to uninstall gtar before doing a fresh download and populating the cache
         required: true
         default: 'False'
         type: choice
@@ -29,8 +29,8 @@ jobs:
     runs-on: macos-latest
     env:
       cache-name: 'cache-test'
-      testfile: 'https://github.com/codeskipper/gh-action-cache-test/blob/719e7246c019e14204a5078cbdcd369e5b35f3fc/testfile/autopkg-illustration.jpg'
-      testfile-url: ''
+      testfile: 'testfile/autopkg-illustration.jpg'
+      testfile-url: 'https://github.com/codeskipper/gh-action-cache-test/blob/719e7246c019e14204a5078cbdcd369e5b35f3fc/testfile/autopkg-illustration.jpg'
       test-attr-key: 'com.github.autopkg.test-cache'
       test-attr-val: 'generated at Bing.com - using: a machine with a conveyer belt and apple mac software package, icons'
     steps:
@@ -40,7 +40,7 @@ jobs:
         run: |
           echo "tar in search path at: $(which tar)"
           echo "tar version: $(tar --version)"
-          echo "gtar in search path at: $(which tar)"
+          echo "gtar in search path at: $(which gtar)"
           echo "gtar version: $(gtar --version)"
 
           if [[ uninstall_gtar == 'True' ]]; then
@@ -67,12 +67,12 @@ jobs:
 
       - name: process test file
         run: |
-          result = ''
-          if [[ ! -x ~/${{ env.cache-name }}/${{ env.testfile }} ]]; then
-            result = $( xattr -p ${{ env.test-attr-key }} ${{ env.cache-name }}/${{ env.testfile }} )
+          result=''
+          if [[ ! -x "~/${{ env.cache-name }}/${{ env.testfile }}" ]]; then
+            result=$( xattr -p ${{ env.test-attr-key }} ${{ env.cache-name }}/${{ env.testfile }} )
             echo "Found testfile: [${{ env.testfile }}] test-attribute: [${{ env.test-attr-key }}] value: [$result]"
           fi
-          if [[ ! $result == ${{ env.test-attr-val }} ]]; then
+          if [[ ! $result == "${{ env.test-attr-val }}" ]]; then
             echo "Test attribute did NOT match test value - downloading test file"
             cd ~/${{ env.cache-name }}
             curl -O ${{ env.testfile-url }}
