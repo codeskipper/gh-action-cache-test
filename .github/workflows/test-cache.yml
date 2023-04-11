@@ -15,14 +15,14 @@ on:
         options:
           - 'False'
           - 'True'
-      verbose:
-        description: verbose output
-        required: true
-        default: 'True'
-        type: choice
-        options:
-        - 'False'
-        - 'True'
+      #verbose:
+      #  description: verbose output
+      #  required: true
+      #  default: 'True'
+      #  type: choice
+      #  options:
+      #  - 'False'
+      #  - 'True'
 
 jobs:
   test-cache:
