@@ -43,13 +43,15 @@ jobs:
           echo "gtar in search path at: $(which gtar)"
           echo "gtar version: $(gtar --version)"
 
-          if [[ uninstall_gtar == 'True' ]]; then
-            echo "Uninstalling Homebrew GNU Tar"
+          if [[ "${{ env.uninstall_gtar }}" == "True" ]]; then
+            echo "Uninstalling Homebrew GNU Tar as directed by workflow input"
             brew remove 'gnu-tar'
             if [[ $? != 0 ]]; then
               echo "failed uninstalling Homebrew GNU Tar"
               exit 1
             fi
+          else
+            echo "NOT Uninstalling Homebrew GNU Tar as directed by workflow input"
           fi
 
           mkdir -p ~/${{ env.cache-name }}
