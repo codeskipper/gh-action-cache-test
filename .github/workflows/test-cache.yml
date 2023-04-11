@@ -3,10 +3,10 @@ name: test-cache-extended-attributes
 on:
   workflow_dispatch: # manually triggered
     inputs:
-      fetch_url:
-        description: Optional test download
-        default: 'https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=osx&lang=en-GB'
-        required: true
+      #fetch_url:
+      #  description: Optional test download
+      #  default: 'https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=osx&lang=en-GB'
+      #  required: true
       uninstall_gtar:
         description: whether to uninstall gtar before doing a fresh download and populating the cache
         required: true
@@ -29,7 +29,7 @@ jobs:
     runs-on: macos-latest
     env:
       cache-name: 'cache-test'
-      testfile: 'testfile/autopkg-illustration.jpg'
+      testfile: 'https://github.com/codeskipper/gh-action-cache-test/blob/719e7246c019e14204a5078cbdcd369e5b35f3fc/testfile/autopkg-illustration.jpg'
       testfile-url: ''
       test-attr-key: 'com.github.autopkg.test-cache'
       test-attr-val: 'generated at Bing.com - using: a machine with a conveyer belt and apple mac software package, icons'
