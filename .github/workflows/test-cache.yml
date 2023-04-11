@@ -29,7 +29,7 @@ jobs:
     runs-on: macos-latest
     env:
       cache-name: 'cache-test'
-      testfile: 'testfile/autopkg-illustration.jpg'
+      testfile: 'autopkg-illustration.jpg'
       testfile-url: 'https://github.com/codeskipper/gh-action-cache-test/raw/719e7246c019e14204a5078cbdcd369e5b35f3fc/testfile/autopkg-illustration.jpg'
       test-attr-key: 'com.github.autopkg.test-cache'
       test-attr-val: 'generated at Bing.com - using: a machine with a conveyer belt and apple mac software package, icons'
