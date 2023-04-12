@@ -81,6 +81,8 @@ jobs:
             echo "test file [~/${{ env.cache-name }}/${{ env.testfile }}] NOT found"
           fi
           if [[ ! $result == "${{ env.test-attr-val }}" ]]; then
+            echo "Test attribute DID match test value - cache working OK 🥳"
+          else
             echo "Test attribute did NOT match test value - downloading test file"
             cd ~/${{ env.cache-name }}
             curl --remote-name --location ${{ env.testfile-url }}
