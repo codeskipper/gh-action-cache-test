@@ -69,9 +69,10 @@ jobs:
 
       - name: process test file
         run: |
-          result=''
-          if [[ -e "~/${{ env.cache-name }}/${{ env.testfile }}" ]]; then
-            result=$( xattr -p ${{ env.test-attr-key }} ${{ env.cache-name }}/${{ env.testfile }} )
+          #result=''
+          #if [[ -e "~/${{ env.cache-name }}/${{ env.testfile }}" ]]; then
+          result=$( xattr -p ${{ env.test-attr-key }} ${{ env.cache-name }}/${{ env.testfile }} )
+          if [[ $? == 0 ]]; then
             echo "Found testfile: [${{ env.testfile }}] test-attribute: [${{ env.test-attr-key }}] value: [$result]"
           else
             echo "test file [~/${{ env.cache-name }}/${{ env.testfile }}] NOT found"
