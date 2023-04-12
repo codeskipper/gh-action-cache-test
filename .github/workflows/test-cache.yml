@@ -66,12 +66,15 @@ jobs:
       - name: show cache
         run: |
           ls -@alh ~/${{ env.cache-name }}
+          echo "==="
+          ls -@alh "~/${{ env.cache-name }}/${{ env.testfile }}"
+          echo "==="
 
       - name: process test file
         run: |
           #result=''
           #if [[ -e "~/${{ env.cache-name }}/${{ env.testfile }}" ]]; then
-          result=$( xattr -p ${{ env.test-attr-key }} ${{ env.cache-name }}/${{ env.testfile }} )
+          result=$( xattr -p ${{ env.test-attr-key }} "~/${{ env.cache-name }}/${{ env.testfile }}" )
           if [[ $? == 0 ]]; then
             echo "Found testfile: [${{ env.testfile }}] test-attribute: [${{ env.test-attr-key }}] value: [$result]"
           else
