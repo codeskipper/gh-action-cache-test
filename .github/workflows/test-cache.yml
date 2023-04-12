@@ -8,7 +8,7 @@ on:
       #  default: 'https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=osx&lang=en-GB'
       #  required: true
       uninstall_gtar:
-        description: uninstall gtar - whether to uninstall GNU tar, so actions/cache uses macOS builtin BSD tar
+        description: uninstall gtar - whether to uninstall GNU tar, so actions/cache uses macOS built-in BSD tar
         required: true
         default: 'False'
         type: choice
