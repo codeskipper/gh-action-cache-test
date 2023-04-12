@@ -67,7 +67,7 @@ jobs:
         run: |
           ls -@alh ~/${{ env.cache-name }}
           echo "==="
-          ls -@alh "~/${{ env.cache-name }}/${{ env.testfile }}"
+          ls -@alh ~/${{ env.cache-name }}/${{ env.testfile }}
           echo "==="
 
       - name: process test file
