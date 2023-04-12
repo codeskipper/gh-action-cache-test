@@ -8,7 +8,7 @@ on:
       #  default: 'https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=osx&lang=en-GB'
       #  required: true
       uninstall_gtar:
-        description: uninstall gtar - whether to uninstall gtar before doing a fresh download and populating the cache
+        description: uninstall gtar - whether to uninstall GNU tar, so actions/cache uses macOS builtin BSD tar
         required: true
         default: 'False'
         type: choice
@@ -70,7 +70,7 @@ jobs:
       - name: process test file
         run: |
           result=''
-          if [[ -x "~/${{ env.cache-name }}/${{ env.testfile }}" ]]; then
+          if [[ -f "~/${{ env.cache-name }}/${{ env.testfile }}" ]]; then
             result=$( xattr -p ${{ env.test-attr-key }} ${{ env.cache-name }}/${{ env.testfile }} )
             echo "Found testfile: [${{ env.testfile }}] test-attribute: [${{ env.test-attr-key }}] value: [$result]"
           fi
